@@ -1,7 +1,7 @@
 import cv2 #pip install opencv-python
 import os
 
-video_path = 'darkSea.mp4'
+video_path = 'demo.mp4'
 cap = cv2.VideoCapture(video_path)
 
 output_dir = 'frames/'+os.path.splitext(video_path)[0]
@@ -13,9 +13,10 @@ while True:
     ret, frame = cap.read()
     if not ret:
         break
-
-    if frame_count % 10 == 0:
-        frame_filename = os.path.join(output_dir, f"frame_{int(frame_count+1/10)}.png")
+    
+    fps = 1
+    if frame_count % fps == 0:
+        frame_filename = os.path.join(output_dir, f"frame_{frame_count}.png")
         cv2.imwrite(frame_filename, frame)
 
     frame_count += 1
